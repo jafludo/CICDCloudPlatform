@@ -15,10 +15,19 @@ steps:
   args: ['-c', 'docker login --username=jaffrezouludovic --password=832b8a8b-a623-4cb8-8084-ef0b9972bdac']
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['-c', 'docker build -t jaffrezouludovic/testcicd:1.0.1 .']
+  args: ['-c', 'docker build -t jaffrezouludovic/testcicd .']
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['-c', 'docker push jaffrezouludovic/testcicd:1.0.1']
+  args: ['-c', 'docker push jaffrezouludovic/testcicd']
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'cd node']
+  args: ['-c', 'docker build -t jaffrezouludovic/testcicd .']
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'cd node']
+  args: ['-c', 'docker push jaffrezouludovic/testcicd']
+
 #- name: 'docker'
 #  args: ['login', '-u', 'jaffrezouludovic','-p','832b8a8b-a623-4cb8-8084-ef0b9972bdac']
 #- name: 'docker'
