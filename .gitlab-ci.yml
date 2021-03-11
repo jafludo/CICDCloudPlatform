@@ -1,0 +1,43 @@
+image: gitlab/dind
+cache:
+  paths:
+    - node_modules
+services:
+  - docker:dind
+
+stages:
+  - build
+  - test
+  - deploy
+
+#before_script:
+#- cd node/src
+#- npm install
+
+variables:
+  MAVEN_CLI_OPTS: "--batch-mode"
+
+build-maven:
+  image: maven:latest
+  script:
+    - mvn $MAVEN_CLI_OPTS compile
+
+build-docker:
+  stage: build
+  script:
+    - cd node/
+    - docker login -u jaffrezouludovic -p 832b8a8b-a623-4cb8-8084-ef0b9972bdac
+    - docker build -t jaffrezouludovic/testcicd:1.0.1 .
+    - docker push jaffrezouludovic/testcicd:1.0.1
+
+compile-maven: 
+  stage: build
+  image: maven:latest
+  script: 
+    - echo "start maven install"
+    - mvn clean install -D skipTests
+
+deploy-prod:
+  stage: deploy
+  script:
+    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
