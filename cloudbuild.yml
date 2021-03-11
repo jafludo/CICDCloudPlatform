@@ -10,11 +10,6 @@ steps:
 - name: 'maven'
   args: ['mvn', 'clean', 'install', '-D', 'skipTests']
   args: ['echo', 'hey', 'maven']
-- name: 'docker'
-  entrypoint: 'bash'
-  args: ['-c', 'docker login --username=jaffrezouludovic --password=832b8a8b-a623-4cb8-8084-ef0b9972bdac']
-  args: ['-c', 'docker build -t jaffrezouludovic/testcicd:1.0.1 .']
-- name: 'docker'
-  entrypoint: 'bash'
-  args: ['-c', 'docker login --username=jaffrezouludovic --password=832b8a8b-a623-4cb8-8084-ef0b9972bdac']
-  args: ['-c', 'docker push jaffrezouludovic/testcicd']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['login', '-u', 'jaffrezouludovic','-p','832b8a8b-a623-4cb8-8084-ef0b9972bdac']
+  args: ['build', '-t', 'gcr.io/august-jigsaw-301016/jaffrezouludovic', '.' ]
