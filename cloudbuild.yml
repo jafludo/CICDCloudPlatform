@@ -10,13 +10,23 @@ steps:
 - name: 'maven'
   args: ['mvn', 'clean', 'install', '-D', 'skipTests']
   args: ['echo', 'hey', 'maven']
-- name: 'docker'
-  args: ['login', '-u', 'jaffrezouludovic','-p','832b8a8b-a623-4cb8-8084-ef0b9972bdac']
-- name: 'docker'
-  args: ['build', '-t', 'jaffrezouludovic:testcicd', '.']
-- name: 'docker'
-  args: ['push', 'jaffrezouludovic:testcicd']
-  
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker login --username=jaffrezouludovic --password=832b8a8b-a623-4cb8-8084-ef0b9972bdac']
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['cd', 'node']
+  args: ['-c', 'docker build -t jaffrezouludovic/testcicd:1.0.1 .']
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['cd', 'node']
+  args: ['-c', 'docker push jaffrezouludovic/testcicd:1.0.1']
+#- name: 'docker'
+#  args: ['login', '-u', 'jaffrezouludovic','-p','832b8a8b-a623-4cb8-8084-ef0b9972bdac']
+#- name: 'docker'
+#  args: ['build', '-t', 'jaffrezouludovic:testcicd', '.']
+#- name: 'docker'
+#  args: ['push', 'jaffrezouludovic:testcicd']
 
 #- name: 'gcr.io/cloud-builders/docker'
 #  args: ['login', '-u', 'jaffrezouludovic','-p','832b8a8b-a623-4cb8-8084-ef0b9972bdac']
