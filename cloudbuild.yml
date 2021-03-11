@@ -5,7 +5,7 @@ steps:
 - name: 'node:latest'
   args: ['bash', '-c', 'cd node']
   args: ['npm', 'install']
-  args: ['npm','run','build']
+  args: ['npm', 'run', 'build']
   args: ['echo', 'hey', 'node']
 - name: 'maven'
   args: ['mvn', 'clean', 'install', '-D', 'skipTests']
@@ -27,7 +27,6 @@ steps:
   entrypoint: 'bash'
   args: ['-c', 'cd node']
   args: ['-c', 'docker push jaffrezouludovic/testcicd']
-
 #- name: 'docker'
 #  args: ['login', '-u', 'jaffrezouludovic','-p','832b8a8b-a623-4cb8-8084-ef0b9972bdac']
 #- name: 'docker'
