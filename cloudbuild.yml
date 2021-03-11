@@ -10,6 +10,15 @@ steps:
 - name: 'maven'
   args: ['mvn', 'clean', 'install', '-D', 'skipTests']
   args: ['echo', 'hey', 'maven']
+
 - name: 'gcr.io/cloud-builders/docker'
   args: ['login', '-u', 'jaffrezouludovic','-p','832b8a8b-a623-4cb8-8084-ef0b9972bdac']
-  args: ['build', '-t', 'gcr.io/august-jigsaw-301016/jaffrezouludovic', '.' ]
+  args: ['build', '-t', 'gcr.io/august-jigsaw-301016/jaffrezouludovic', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['login', '-u', 'jaffrezouludovic','-p','832b8a8b-a623-4cb8-8084-ef0b9972bdac']
+  args: ['push', 'gcr.io/august-jigsaw-301016/jaffrezouludovic']
+
+
+#- name: 'gcr.io/cloud-builders/docker'
+#  args: ['login', '-u', 'jaffrezouludovic','-p','832b8a8b-a623-4cb8-8084-ef0b9972bdac']
+#  args: ['build', '-t', 'gcr.io/august-jigsaw-301016/jaffrezouludovic', '.' ]
