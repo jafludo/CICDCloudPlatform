@@ -3,7 +3,6 @@ steps:
 - name: 'ubuntu'
   args: ['echo', 'hey', 'ubuntu']
 - name: 'node:latest'
-  dir: 'node'
   args: ['bash', '-c', 'cd node']
   args: ['npm', 'install']
   args: ['npm', 'run', 'build']
