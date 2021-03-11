@@ -13,9 +13,7 @@ steps:
 - name: 'docker'
   args: ['echo', 'hey', 'docker']
   args: ['docker', 'login', '-u', 'jaffrezouludovic','-p','832b8a8b-a623-4cb8-8084-ef0b9972bdac']
-- name: 'docker'
-  args: ['echo', 'hey', 'docker']
+  args: ['sleep', '2000']
   args: ['docker', 'build', '-t', 'jaffrezouludovic/testcicd:1.0.1','.']
-- name: 'docker'
-  args: ['echo', 'hey', 'docker']
+  args: ['sleep', '2000']
   args: ['docker', 'push', 'jaffrezouludovic/testcicd:1.0.1']
