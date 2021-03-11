@@ -1,43 +1,68 @@
-image: gitlab/dind
 cache:
   paths:
-    - node_modules
-services:
-  - docker:dind
+    - .m2/repository
+    - target 
+    - node_module
 
-stages:
-  - build
+stages: 
+  - compile
   - test
-  - deploy
+  - dockerize
 
-#before_script:
-#- cd node/src
-#- npm install
-
-variables:
-  MAVEN_CLI_OPTS: "--batch-mode"
-
-build-maven:
+compile-java:
   image: maven:latest
-  script:
-    - mvn $MAVEN_CLI_OPTS compile
-
-build-docker:
-  stage: build
-  script:
-    - cd node/
-    - docker login -u jaffrezouludovic -p 832b8a8b-a623-4cb8-8084-ef0b9972bdac
-    - docker build -t jaffrezouludovic/testcicd:1.0.1 .
-    - docker push jaffrezouludovic/testcicd:1.0.1
-
-compile-maven: 
-  stage: build
-  image: maven:latest
+  stage: compile
   script: 
-    - echo "start maven install"
-    - mvn clean install -D skipTests
+    - mvn clean install -DskipTest
 
-deploy-prod:
-  stage: deploy
-  script:
-    - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
+compile-abc:
+  image: maven:latest
+  stage: compile
+  script: 
+    - mvn clean install -DskipTest
+  only:
+    - abc
+
+test-java:
+  image: maven:latest
+  stage: test 
+  script: 
+    - mvn test
+
+compile-javascript:
+  image: node:latest
+  stage: compile
+  script: 
+    - cd jsproject
+    - npm i 
+    - npm run build
+
+test-javascript:
+  image: node:latest
+  stage: test
+  script: 
+    - cd jsproject
+    - npm run test
+
+docker-java: 
+  image: docker:latest
+  stage: dockerize
+  services: 
+    - docker:dind
+  before_script:
+    - docker login -u $DOCKERLOGIN -p $DOCKERMDP
+  script: 
+    - docker build -t maryo42/demojava:1.0 .
+    - docker push maryo42/demojava:1.0
+
+docker-javascript: 
+  image: docker:latest
+  stage: dockerize
+  services: 
+    - docker:dind
+  before_script:
+    - docker login -u $DOCKERLOGIN -p $DOCKERMDP
+  script: 
+    - cd jsproject
+    - docker build -t maryo42/demojavascript:1.0 .
+    - docker push maryo42/demojavascript:1.0    

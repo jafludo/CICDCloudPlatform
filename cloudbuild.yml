@@ -1,5 +1,7 @@
 steps:
 - name: 'ubuntu'
   args: ['echo', 'hey', 'ubuntu']
+- name: 'node:latest'
+  args: ['npm', 'run', 'test']
 - name: 'maven'
   args: ['mvn', 'clean', 'install', '-D', 'skipTests']
