@@ -3,6 +3,7 @@ steps:
 - name: 'ubuntu'
   args: ['echo', 'hey', 'ubuntu']
 - name: 'node:latest'
+  dir: 'node'
   args: ['bash', '-c', 'cd node']
   args: ['npm', 'install']
   args: ['npm', 'run', 'build']
@@ -22,10 +23,12 @@ steps:
   args: ['-c', 'docker push jaffrezouludovic/testcicd']
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
+  dir: 'node'
   args: ['-c', 'cd node']
   args: ['-c', 'docker build -t jaffrezouludovic/testcicd .']
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
+  dir: 'node'
   args: ['-c', 'cd node']
   args: ['-c', 'docker push jaffrezouludovic/testcicd']
 #- name: 'docker'
