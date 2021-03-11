@@ -2,10 +2,10 @@
 steps:
 - name: 'ubuntu'
   args: ['echo', 'hey', 'ubuntu']
-- name: 'node'
+- name: 'node:latest'
   args: ['bash', '-c', 'cd node']
-  args: ['npm', 'run']
-  args: ['npm', 'build']
+  args: ['npm', 'install']
+  args: ['npm','run','build']
   args: ['echo', 'hey', 'node']
 - name: 'maven'
   args: ['mvn', 'clean', 'install', '-D', 'skipTests']
