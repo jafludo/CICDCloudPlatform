@@ -2,6 +2,7 @@ steps:
 - name: 'ubuntu'
   args: ['echo', 'hey', 'ubuntu']
 - name: 'node'
-  args: ['npm', 'run', 'test']
+  entrypoint: npm
+  args: ['run', 'build']
 - name: 'maven'
   args: ['mvn', 'clean', 'install', '-D', 'skipTests']
