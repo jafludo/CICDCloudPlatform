@@ -5,10 +5,13 @@ steps:
 - name: 'node'
   args: ['npm', 'run']
   args: ['npm', 'build']
+  args: ['echo', 'hey', 'node']
 - name: 'maven'
   args: ['mvn', 'clean', 'install', '-D', 'skipTests']
+  args: ['echo', 'hey', 'maven']
 - name: 'docker'
+  args: ['echo', 'hey', 'docker']
   args: ['docker', 'login', '-u', 'jaffrezouludovic', '832b8a8b-a623-4cb8-8084-ef0b9972bdac']
+  args: ['docker', 'pull', 'jaffrezouludovic/testcicd:1.0.1']
   args: ['docker', 'build', '-t', 'jaffrezouludovic/testcicd:1.0.1', '.']
   args: ['docker', 'push', 'jaffrezouludovic/testcicd:1.0.1']
-
