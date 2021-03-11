@@ -1,4 +1,3 @@
 steps:
 - name: 'ubuntu'
-- name: 'ubuntu'
   args: ['mvn', 'clean', 'install', '-D', 'skipTests']
