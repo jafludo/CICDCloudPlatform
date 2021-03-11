@@ -22,12 +22,10 @@ steps:
   args: ['-c', 'docker push jaffrezouludovic/testcicd']
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  dir: 'node'
   args: ['-c', 'cd node']
   args: ['-c', 'docker build -t jaffrezouludovic/testcicd .']
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  dir: 'node'
   args: ['-c', 'cd node']
   args: ['-c', 'docker push jaffrezouludovic/testcicd']
 #- name: 'docker'
