@@ -12,8 +12,11 @@ steps:
   args: ['echo', 'hey', 'maven']
 - name: 'docker'
   args: ['login', '-u', 'jaffrezouludovic','-p','832b8a8b-a623-4cb8-8084-ef0b9972bdac']
+- name: 'docker'
   args: ['build', '-t', 'jaffrezouludovic:testcicd', '.']
+- name: 'docker'
   args: ['push', 'jaffrezouludovic:testcicd']
+  
 
 #- name: 'gcr.io/cloud-builders/docker'
 #  args: ['login', '-u', 'jaffrezouludovic','-p','832b8a8b-a623-4cb8-8084-ef0b9972bdac']
