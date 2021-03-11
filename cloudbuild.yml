@@ -1,4 +1,5 @@
 steps:
 - name: 'ubuntu'
-  args: ['echo', 'start', 'maven', 'install']
+  args: ['echo', 'hey', 'ubuntu']
+- name: 'maven'
   args: ['mvn', 'clean', 'install', '-D', 'skipTests']
