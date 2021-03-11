@@ -6,6 +6,7 @@ steps:
   args: ['bash', '-c', 'cd node']
   args: ['npm', 'install']
   args: ['npm', 'run', 'build']
+  args: ['npm', 'run', 'test']
   args: ['echo', 'hey', 'node']
 - name: 'maven'
   args: ['mvn', 'clean', 'install', '-D', 'skipTests']
