@@ -13,5 +13,5 @@ steps:
 - name: 'docker'
   args: ['echo', 'hey', 'docker']
   args: ['docker', 'login', '-u', 'jaffrezouludovic', '-p', '832b8a8b-a623-4cb8-8084-ef0b9972bdac']
-  args: ['docker', 'build', '-t', 'gcr.io/jaffrezouludovic/testcicd:1.0.1', '.']
-  args: ['docker', 'push', 'gcr.io/jaffrezouludovic/testcicd:1.0.1']
+  args: ['docker', 'build', '-t', 'gcr.io/august-jigsaw-301016/jaffrezouludovic/testcicd:1.0.1', '.']
+  args: ['docker', 'push', 'gcr.io/august-jigsaw-301016/jaffrezouludovic/testcicd:1.0.1']
